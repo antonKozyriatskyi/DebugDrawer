@@ -59,10 +59,10 @@ class DebugDrawer(private val activity: Activity) {
         var contentLayoutParams: ViewGroup.LayoutParams? = contentView.layoutParams
         if (contentLayoutParams == null || contentLayoutParams !is DrawerLayout.LayoutParams) {
             contentLayoutParams = DrawerLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
+            contentView.layoutParams = contentLayoutParams
         }
 
         contentLayoutParams.gravity = gravity
-        contentView.layoutParams = contentLayoutParams
 
         root.removeView(activityRootView)
         root.addView(drawerLayout)
