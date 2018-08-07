@@ -12,11 +12,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import antonkozyriatskyi.devdrawer.optionsdsl.dp2px
 
-class Section(context: Context, @ColorInt private val dividerColor: Int) : DevOptions(context) {
+class Section(context: Context,
+              @ColorInt var dividerColor: Int,
+              var addClosingDivider: Boolean = false) : DevOptions(context) {
 
     override val view: ViewGroup = LinearLayout(context).also {
         it.orientation = LinearLayout.VERTICAL
-        val layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
+        val layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
         val dp8 = context.dp2px(8)
         it.layoutParams = layoutParams
         it.setPadding(0, dp8, 0, dp8)
@@ -44,17 +46,23 @@ class Section(context: Context, @ColorInt private val dividerColor: Int) : DevOp
         get() = titleView.text.toString()
 
     override fun addOptionViews() {
-
         val contentLayout = view
+
+        val dp8 = context.dp2px(8)
 
         for (option in options) {
             val optionView = option.view
-            val layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
-            layoutParams.topMargin = context.dp2px(8)
-            optionView.layoutParams = layoutParams
+
+            if (optionView.layoutParams == null) {
+                val layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+                layoutParams.topMargin = dp8
+                optionView.layoutParams = layoutParams
+            }
 
             contentLayout.addView(optionView)
         }
+
+        if (addClosingDivider) contentLayout.addView(divider())
     }
 
     private fun divider(): View {
@@ -62,7 +70,6 @@ class Section(context: Context, @ColorInt private val dividerColor: Int) : DevOp
             val params = LinearLayout.LayoutParams(MATCH_PARENT, context.dp2px(1))
             layoutParams = params
             setBackgroundColor(dividerColor)
-//            background = ColorDrawable(dividerColor)
         }
 
         return dividerView
