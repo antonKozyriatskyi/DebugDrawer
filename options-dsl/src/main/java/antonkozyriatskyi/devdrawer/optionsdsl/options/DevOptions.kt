@@ -3,7 +3,9 @@ package antonkozyriatskyi.devdrawer.optionsdsl.options
 import android.content.Context
 import android.graphics.Color
 import android.support.annotation.ColorInt
+import android.support.annotation.Dimension
 import android.support.v4.widget.DrawerLayout
+import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -13,7 +15,7 @@ import android.widget.ScrollView
 import antonkozyriatskyi.devdrawer.optionsdsl.dp2px
 import java.util.*
 
-open class DevOptions(val context: Context) : DevOption(context) {
+open class DevOptions(context: Context) : DevOption(context) {
 
     val options = LinkedList<DevOption>()
 
@@ -82,6 +84,65 @@ open class DevOptions(val context: Context) : DevOption(context) {
         return option
     }
 
+    inline fun button(title: String = "", block: ButtonOption.() -> Unit): ButtonOption {
+        val option = ButtonOption(context)
+        option.title = title
+        option.block()
+
+        addOption(option)
+
+        return option
+    }
+
+    inline fun text(title: String = "", block: TextOption.() -> Unit): TextOption {
+        val option = TextOption(context)
+        option.title = title
+        option.block()
+
+        addOption(option)
+
+        return option
+    }
+
+    inline fun toggle(title: String = "", block: ToggleOption.() -> Unit): ToggleOption {
+        val option = ToggleOption(context)
+        option.title = title
+        option.block()
+
+        addOption(option)
+
+        return option
+    }
+
+    inline fun view(block: () -> View): ViewOption {
+        val option = ViewOption(block(), context)
+
+        addOption(option)
+
+        return option
+    }
+
+    fun radioGroup(block: RadioOptions.() -> Unit): RadioOptions {
+        val option = RadioOptions(context)
+        option.block()
+        option.addOptionViews()
+
+        addOption(option)
+
+        return option
+    }
+
+    inline fun divider(@ColorInt color: Int = Color.LTGRAY,
+                       @Dimension(unit = Dimension.DP) thickness: Int = 1,
+                       block: DividerOption.() -> Unit = { }): DividerOption {
+        val option = DividerOption(color, thickness, context)
+        option.block()
+
+        addOption(option)
+
+        return option
+    }
+
     fun addOption(option: DevOption) {
         options.add(option)
     }
@@ -93,9 +154,12 @@ open class DevOptions(val context: Context) : DevOption(context) {
 
         for (option in options) {
             val optionView = option.view
-            val layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
-            layoutParams.topMargin = dp8
-            optionView.layoutParams = layoutParams
+
+            if (optionView.layoutParams == null) {
+                val layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+                layoutParams.topMargin = dp8
+                optionView.layoutParams = layoutParams
+            }
 
             contentLayout.addView(optionView)
         }
