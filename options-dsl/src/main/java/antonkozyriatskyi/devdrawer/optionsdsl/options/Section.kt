@@ -27,7 +27,7 @@ class Section(context: Context, @ColorInt private val dividerColor: Int) : DevOp
         val layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
         val dp8 = context.dp2px(8)
         layoutParams.topMargin = dp8
-        layoutParams.marginStart = dp8
+        layoutParams.leftMargin = dp8
         it.layoutParams = layoutParams
         it.typeface = Typeface.DEFAULT_BOLD
     }
