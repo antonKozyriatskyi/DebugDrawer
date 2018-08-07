@@ -1,4 +1,4 @@
-package antonkozyriatskyi.debugdrawer
+package antonkozyriatskyi.devdrawer
 
 import android.support.annotation.IntDef
 import android.view.Gravity

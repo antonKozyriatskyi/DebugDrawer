@@ -1,10 +1,10 @@
-package antonkozyriatskyi.debugdrawer.optionsdsl.options
+package antonkozyriatskyi.devdrawer.optionsdsl.options
 
 import android.content.Context
 import android.widget.CompoundButton
 import android.widget.Switch
 
-class SwitchOption(context: Context) : DebugOption(context) {
+class SwitchOption(context: Context) : DevOption(context) {
 
     override val view = Switch(context)
 

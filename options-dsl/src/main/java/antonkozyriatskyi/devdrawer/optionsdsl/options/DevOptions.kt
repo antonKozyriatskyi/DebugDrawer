@@ -1,4 +1,4 @@
-package antonkozyriatskyi.debugdrawer.optionsdsl.options
+package antonkozyriatskyi.devdrawer.optionsdsl.options
 
 import android.content.Context
 import android.graphics.Color
@@ -10,12 +10,12 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.ScrollView
-import antonkozyriatskyi.debugdrawer.optionsdsl.dp2px
+import antonkozyriatskyi.devdrawer.optionsdsl.dp2px
 import java.util.*
 
-open class DebugOptions(val context: Context) : DebugOption(context) {
+open class DevOptions(val context: Context) : DevOption(context) {
 
-    val options = LinkedList<DebugOption>()
+    val options = LinkedList<DevOption>()
 
     override val view: ViewGroup
 
@@ -82,7 +82,7 @@ open class DebugOptions(val context: Context) : DebugOption(context) {
         return option
     }
 
-    fun addOption(option: DebugOption) {
+    fun addOption(option: DevOption) {
         options.add(option)
     }
 

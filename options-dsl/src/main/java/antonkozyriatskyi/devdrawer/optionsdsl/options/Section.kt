@@ -1,9 +1,8 @@
-package antonkozyriatskyi.debugdrawer.optionsdsl.options
+package antonkozyriatskyi.devdrawer.optionsdsl.options
 
 import android.content.Context
 import android.graphics.Typeface
 import android.support.annotation.ColorInt
-import android.support.v4.view.ViewCompat
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -11,9 +10,9 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-import antonkozyriatskyi.debugdrawer.optionsdsl.dp2px
+import antonkozyriatskyi.devdrawer.optionsdsl.dp2px
 
-class Section(context: Context, @ColorInt private val dividerColor: Int) : DebugOptions(context) {
+class Section(context: Context, @ColorInt private val dividerColor: Int) : DevOptions(context) {
 
     override val view: ViewGroup = LinearLayout(context).also {
         it.orientation = LinearLayout.VERTICAL

@@ -1,4 +1,4 @@
-package antonkozyriatskyi.debugdrawerexample
+package antonkozyriatskyi.devdrawerexample
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun openDrawerActivity(view: View) {
+    fun openDslActivity(view: View) {
         startActivity(Intent(this, DslDrawerActivity::class.java))
+    }
+
+    fun openCustomViewActivity(view: View) {
+        startActivity(Intent(this, CustomViewDrawerActivity::class.java))
     }
 }

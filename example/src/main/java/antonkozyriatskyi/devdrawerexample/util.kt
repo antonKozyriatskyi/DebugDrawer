@@ -1,4 +1,4 @@
-package antonkozyriatskyi.debugdrawerexample
+package antonkozyriatskyi.devdrawerexample
 
 import android.content.Context
 import android.widget.Toast

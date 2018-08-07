@@ -1,10 +1,10 @@
-package antonkozyriatskyi.debugdrawer.optionsdsl.options
+package antonkozyriatskyi.devdrawer.optionsdsl.options
 
 import android.content.Context
 import android.widget.CheckBox
 import android.widget.CompoundButton
 
-class CheckboxOption(context: Context) : DebugOption(context) {
+class CheckboxOption(context: Context) : DevOption(context) {
 
     override val view = CheckBox(context)
 

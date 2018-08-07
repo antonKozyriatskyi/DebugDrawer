@@ -1,11 +1,11 @@
-package antonkozyriatskyi.debugdrawer.optionsdsl.options
+package antonkozyriatskyi.devdrawer.optionsdsl.options
 
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 
-class EditTextOption(context: Context) : DebugOption(context) {
+class EditTextOption(context: Context) : DevOption(context) {
 
     override val view = EditText(context)
 
