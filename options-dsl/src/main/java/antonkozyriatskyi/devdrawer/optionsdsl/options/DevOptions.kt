@@ -89,10 +89,12 @@ open class DevOptions(val context: Context) : DevOption(context) {
     internal open fun addOptionViews() {
         val contentLayout = (view.getChildAt(0) as ViewGroup)
 
+        val dp8 = context.dp2px(8)
+
         for (option in options) {
             val optionView = option.view
             val layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
-            layoutParams.topMargin = context.dp2px(8)
+            layoutParams.topMargin = dp8
             optionView.layoutParams = layoutParams
 
             contentLayout.addView(optionView)
