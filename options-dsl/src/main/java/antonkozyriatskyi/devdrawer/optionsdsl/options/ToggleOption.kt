@@ -1,19 +1,12 @@
 package antonkozyriatskyi.devdrawer.optionsdsl.options
 
 import android.content.Context
-import android.widget.CompoundButton
 import android.widget.ToggleButton
 
-class ToggleOption(context: Context) : DevOption(context) {
+class ToggleOption(context: Context) : CompoundButtonOption(context) {
 
     override val view = ToggleButton(context)
 
-
-    var title: String
-        set(value) {
-            view.text = value
-        }
-        get() = view.text.toString()
 
     var textOn: String
         set(value) {
@@ -26,12 +19,4 @@ class ToggleOption(context: Context) : DevOption(context) {
             view.textOff = value
         }
         get() = view.textOff.toString()
-
-    fun onCheckedChange(listener: CompoundButton.OnCheckedChangeListener) {
-        view.setOnCheckedChangeListener(listener)
-    }
-
-    inline fun onCheckedChange(crossinline listener: (isChecked: Boolean) -> Unit) {
-        onCheckedChange(CompoundButton.OnCheckedChangeListener { _, isChecked -> listener(isChecked) })
-    }
 }
