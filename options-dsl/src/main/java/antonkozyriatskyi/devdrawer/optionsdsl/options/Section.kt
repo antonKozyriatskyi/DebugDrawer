@@ -14,7 +14,7 @@ import antonkozyriatskyi.devdrawer.optionsdsl.dp2px
 
 class Section(context: Context,
               @ColorInt var dividerColor: Int,
-              var addClosingDivider: Boolean = false) : DevOptions(context) {
+              var addClosingDivider: Boolean) : DevOptions(context) {
 
     override val view: ViewGroup = LinearLayout(context).also {
         it.orientation = LinearLayout.VERTICAL

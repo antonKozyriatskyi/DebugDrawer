@@ -73,8 +73,9 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    fun section(title: String = "", @ColorInt dividerColor: Int = Color.LTGRAY, block: Section.() -> Unit): Section {
-        val option = Section(context, dividerColor)
+    fun section(title: String = "", @ColorInt dividerColor: Int = Color.LTGRAY,
+                addClosingDivider: Boolean = false, block: Section.() -> Unit): Section {
+        val option = Section(context, dividerColor, addClosingDivider)
         option.title = title
         option.block()
         option.addOptionViews()
