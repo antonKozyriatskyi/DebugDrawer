@@ -12,7 +12,7 @@ class CustomViewDrawerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_view_drawer)
 
-        val view = LayoutInflater.from(this).inflate(R.layout.dev_drawer, null)
+        val view = LayoutInflater.from(this).inflate(R.layout.settings_drawer, null)
         DevDrawer.attachTo(this, gravity = Gravity.END, contentView = view)
     }
 }
