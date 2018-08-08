@@ -13,7 +13,7 @@ class RadioGroupOption(context: Context) : DevOptions(context) {
 
     inline fun radioButton(title: String = "",
                            isChecked: Boolean = false,
-                           block: RadioOption.() -> Unit): RadioOption {
+                           block: RadioOption.() -> Unit = {}): RadioOption {
         val option = RadioOption(context)
         option.isChecked = isChecked
         option.title = title
