@@ -6,7 +6,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.RadioGroup
 import antonkozyriatskyi.devdrawer.optionsdsl.dp2px
 
-class RadioOptions(context: Context) : DevOptions(context) {
+class RadioGroupOption(context: Context) : DevOptions(context) {
 
     override val view = RadioGroup(context)
 
