@@ -15,6 +15,18 @@ class ToggleOption(context: Context) : DevOption(context) {
         }
         get() = view.text.toString()
 
+    var textOn: String
+        set(value) {
+            view.textOn = value
+        }
+        get() = view.textOn.toString()
+
+    var textOff: String
+        set(value) {
+            view.textOff = value
+        }
+        get() = view.textOff.toString()
+
     fun onCheckedChange(listener: CompoundButton.OnCheckedChangeListener) {
         view.setOnCheckedChangeListener(listener)
     }
