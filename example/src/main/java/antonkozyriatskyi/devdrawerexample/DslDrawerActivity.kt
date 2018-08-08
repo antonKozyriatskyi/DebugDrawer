@@ -72,7 +72,7 @@ class DslDrawerActivity : AppCompatActivity() {
                 title = "Custom text"
             }
 
-            divider()
+            divider
 
             text {
                 title = "Custom text"
@@ -98,6 +98,8 @@ class DslDrawerActivity : AppCompatActivity() {
                 addItem("World")
 
                 item { "Another one" }
+
+                onItemSelected { title, position -> showToast("$title at $position") }
             }
         }
     }
