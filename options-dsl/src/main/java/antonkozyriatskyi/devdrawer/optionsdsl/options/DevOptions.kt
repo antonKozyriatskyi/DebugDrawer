@@ -132,6 +132,9 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
+    val divider: DividerOption
+        get() = divider()
+
     inline fun divider(@ColorInt color: Int = Color.LTGRAY,
                        @Dimension(unit = Dimension.DP) thickness: Int = 1,
                        block: DividerOption.() -> Unit = { }): DividerOption {
