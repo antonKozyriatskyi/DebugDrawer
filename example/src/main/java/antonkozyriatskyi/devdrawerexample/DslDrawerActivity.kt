@@ -25,7 +25,7 @@ class DslDrawerActivity : AppCompatActivity() {
                 onCheckedChange { isChecked -> showToast("Something's enabled: $isChecked") }
             }
 
-            section {
+            section(addClosingDivider = true) {
                 title = "Server settings"
 
                 editText {
@@ -49,7 +49,7 @@ class DslDrawerActivity : AppCompatActivity() {
 
             toggle {
                 title = "This is toggle"
-                onCheckedChange { showToast("Toggle toggled: $it") }
+                onCheckedChange { showToast("Toggle toggled: $textOn") }
             }
 
             view {
@@ -60,11 +60,14 @@ class DslDrawerActivity : AppCompatActivity() {
             }
 
             radioGroup {
-                radioButton {
+                radioButton(isChecked = true) {
                     title = "Radio 1"
                 }
                 radioButton {
                     title = "Radio 2"
+                }
+                onCheckedChange { option ->
+                    showToast("${option.title} selected")
                 }
             }
 
