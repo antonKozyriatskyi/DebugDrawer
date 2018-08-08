@@ -105,9 +105,14 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun toggle(title: String = "", block: ToggleOption.() -> Unit): ToggleOption {
+    inline fun toggle(title: String = "",
+                      textOn: String? = null,
+                      textOff: String? = null,
+                      block: ToggleOption.() -> Unit): ToggleOption {
         val option = ToggleOption(context)
         option.title = title
+        if (textOn != null) option.textOn = textOn
+        if (textOff != null) option.textOff = textOff
         option.block()
 
         addOption(option)
