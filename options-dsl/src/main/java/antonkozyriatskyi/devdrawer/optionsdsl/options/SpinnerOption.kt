@@ -1,6 +1,8 @@
 package antonkozyriatskyi.devdrawer.optionsdsl.options
 
 import android.content.Context
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 
@@ -19,6 +21,7 @@ class SpinnerOption(context: Context) : DevOption(context) {
             items).also {
         it.setNotifyOnChange(true)
         it.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        view.adapter = it
     }
 
     fun addItem(title: String) {
@@ -28,5 +31,21 @@ class SpinnerOption(context: Context) : DevOption(context) {
 
     inline fun item(block: () -> String) {
         addItem(block())
+    }
+
+    fun onItemSelected(listener: AdapterView.OnItemSelectedListener) {
+        view.onItemSelectedListener = listener
+    }
+
+    inline fun onItemSelected(crossinline listener: (title: String, position: Int) -> Unit) {
+        onItemSelected(object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                listener(parent.getItemAtPosition(position) as String, position)
+            }
+        })
     }
 }
