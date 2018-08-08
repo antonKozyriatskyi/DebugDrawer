@@ -1,12 +1,8 @@
 package antonkozyriatskyi.devdrawerexample
 
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.widget.LinearLayout
 import antonkozyriatskyi.devdrawer.DevDrawer
 
 class DslDrawerActivity : AppCompatActivity() {
@@ -16,91 +12,64 @@ class DslDrawerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_drawer)
         DevDrawer.attachTo(this, gravity = Gravity.END) {
 
-            switch {
+            checkbox {
                 title = "Enable logging"
                 onCheckedChange { isChecked -> showToast("Logging enabled: $isChecked") }
             }
 
-            switch(title = "Enable something else") {
-                onCheckedChange { isChecked -> showToast("Something's enabled: $isChecked") }
-            }
+            section(addClosingDivider = false) {
+                title = "Network settings"
 
-            section(addClosingDivider = true) {
-                title = "Server settings"
+                toggle {
+                    title = "Network state"
+                    textOn = "Connected"
+                    textOff = "Disconnected"
+                    onCheckedChange { isChecked -> showToast("Network: $isChecked") }
+                }
 
                 editText {
                     title = "localhost"
-                    hint = "url"
+                    hint = "Server url"
                 }
 
                 checkbox {
                     title = "Mock responses"
                     onCheckedChange { showToast("Mock responses enabled: $it") }
                 }
+
+                radioGroup {
+                    radioButton(isChecked = true) {
+                        title = "Send real requests"
+                    }
+                    radioButton {
+                        title = "Show error responses only"
+                    }
+                    radioButton(title = "Show success responses only")
+
+                    onCheckedChange { option ->
+                        showToast("${option.title} selected")
+                    }
+                }
+            }
+
+            switch {
+                title = "God mode"
+
+                onCheckedChange { showToast("God mode switched: $it") }
             }
 
             button {
-                title = "My button"
+                title = "Crash"
+
+                onClick { throw Exception("Intended crash") }
             }
 
-            text {
-                title = "Custom text"
-            }
-
-            toggle {
-                title = "This is toggle"
-                onCheckedChange { showToast("Toggle toggled: $textOn") }
-            }
-
-            view {
-                View(this@DslDrawerActivity).also {
-                    it.setBackgroundColor(Color.GREEN)
-                    it.layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, 300)
-                }
-            }
-
-            radioGroup {
-                radioButton(isChecked = true) {
-                    title = "Radio 1"
-                }
-                radioButton {
-                    title = "Radio 2"
-                }
-                onCheckedChange { option ->
-                    showToast("${option.title} selected")
-                }
-            }
-
-            text {
-                title = "Custom text"
-            }
-
-            divider
-
-            text {
-                title = "Custom text"
-            }
-
-            divider(thickness = 4) {
-
-            }
-
-            text {
-                title = "Custom text"
-            }
-
-            divider {
-                thickness = 3
-            }
+            text { title = "Theme" }
 
             spinner {
-                item {
-                    "Hello"
-                }
-
-                addItem("World")
-
-                item { "Another one" }
+                item { "Auto" }
+                addItem("Dark")
+                item { "Light" }
 
                 onItemSelected { title, position -> showToast("$title at $position") }
             }
