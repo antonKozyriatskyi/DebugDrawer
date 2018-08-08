@@ -89,6 +89,16 @@ class DslDrawerActivity : AppCompatActivity() {
             divider {
                 thickness = 3
             }
+
+            spinner {
+                item {
+                    "Hello"
+                }
+
+                addItem("World")
+
+                item { "Another one" }
+            }
         }
     }
 }

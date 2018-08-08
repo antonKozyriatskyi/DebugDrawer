@@ -143,6 +143,15 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
+    inline fun spinner(block: SpinnerOption.() -> Unit): SpinnerOption {
+        val option = SpinnerOption(context)
+        option.block()
+
+        addOption(option)
+
+        return option
+    }
+
     fun addOption(option: DevOption) {
         options.add(option)
     }
