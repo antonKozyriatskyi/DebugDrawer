@@ -7,38 +7,61 @@ Drawer for
 In your activity call:
 
 ```kotlin
- DebugDrawer.attachTo(this, gravity = Gravity.END) {
-             switch {
-                 title = "Switch 1"
-                 onCheckedChange {
-                     showToast("$title: isChecked = $it")
-                 }
-             }
-             switch(title = "Switch 2") {
-                 onCheckedChange {
-                     showToast("$title: isChecked = $it")
-                 }
-             }
- 
-             section(title = "Section 1") {
-                 checkbox("Checkbox 1") {
-                     onCheckedChange {
-                         showToast("$title: isChecked = $it")
-                     }
-                 }
-             }
- 
-             section("Section 2") {
-                 editText(title = "FOO") {
-                     hint = "Hint"
-                     val toast = toast("")
-                     onTextChanged {
-                         println(it)
-                         toast.cancel()
-                         toast.setText("EditText in $title\n$it")
-                         toast.show()
-                     }
-                 }
-             }
-         }
+val settingsView = LayoutInflater.from(this).inflate(R.layout.settings_drawer, null)
+DevDrawer.attachTo(this, gravity = Gravity.END, contentView = settingsView)
 ```
+
+## Kotlin DSL builder
+
+If you're using Kotlin, you can create debug layout with nice DSL.
+
+### Available DevOptions
+
+ - ButtonOption
+ - CheckBoxOption
+ - EditTextOption
+ - RadioOption
+ - RadioGroupOption
+ - SpinnerOption
+ - SwitchOption
+ - TextOption
+ - ToggleOption
+ - ViewOption
+ - Section
+ - Divider
+ 
+#### ButtonOption
+ 
+ Represents a button
+ 
+ ```kotlin
+button(title = "Dangerous button") {
+    title = "Dangerous button" // Title can also be set like this
+    onClick {
+        showToast("$title clicked")
+    }
+}
+```
+ 
+#### CheckBoxOption
+
+```kotlin
+checkbox {
+    title = "Enable logging"
+    
+    onCheckedChange {
+        
+    }
+}
+```
+#### EditTextOption
+#### RadioOption
+#### RadioGroupOption
+#### SpinnerOption
+#### SwitchOption
+#### TextOption
+#### ToggleOption
+#### ViewOption
+#### Section
+#### Divider
+  
