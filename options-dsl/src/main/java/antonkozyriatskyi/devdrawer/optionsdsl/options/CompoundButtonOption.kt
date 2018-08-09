@@ -13,6 +13,12 @@ abstract class CompoundButtonOption(context: Context) : DevOption(context) {
         }
         get() = view.text.toString()
 
+    var isChecked: Boolean
+        set(value) {
+            view.isChecked = value
+        }
+        get() = view.isChecked
+
     fun onCheckedChange(listener: CompoundButton.OnCheckedChangeListener) {
         view.setOnCheckedChangeListener(listener)
     }

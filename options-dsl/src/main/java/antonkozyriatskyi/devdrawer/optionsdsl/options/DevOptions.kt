@@ -42,9 +42,12 @@ open class DevOptions(context: Context) : DevOption(context) {
         view = rootView
     }
 
-    inline fun switch(title: String = "", block: SwitchOption.() -> Unit): SwitchOption {
+    inline fun switch(title: String = "",
+                      isChecked: Boolean = false,
+                      block: SwitchOption.() -> Unit): SwitchOption {
         val option = SwitchOption(context)
         option.title = title
+        option.isChecked = isChecked
         option.block()
 
         addOption(option)
@@ -52,9 +55,12 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun checkbox(title: String = "", block: CheckboxOption.() -> Unit): CheckboxOption {
+    inline fun checkbox(title: String = "",
+                        isChecked: Boolean = false,
+                        block: CheckboxOption.() -> Unit): CheckboxOption {
         val option = CheckboxOption(context)
         option.title = title
+        option.isChecked = isChecked
         option.block()
 
         addOption(option)
@@ -108,9 +114,11 @@ open class DevOptions(context: Context) : DevOption(context) {
     inline fun toggle(title: String = "",
                       textOn: String? = null,
                       textOff: String? = null,
+                      isChecked: Boolean = false,
                       block: ToggleOption.() -> Unit): ToggleOption {
         val option = ToggleOption(context)
         option.title = title
+        option.isChecked = isChecked
         if (textOn != null) option.textOn = textOn
         if (textOff != null) option.textOff = textOff
         option.block()
