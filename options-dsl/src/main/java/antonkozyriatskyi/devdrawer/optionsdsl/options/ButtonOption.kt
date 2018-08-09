@@ -9,7 +9,7 @@ class ButtonOption(context: Context) : DevOption(context) {
     override val view = Button(context)
 
 
-    var title: String
+    var text: String
         set(value) {
             view.text = value
         }

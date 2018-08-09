@@ -7,7 +7,7 @@ abstract class CompoundButtonOption(context: Context) : DevOption(context) {
 
     abstract override val view: CompoundButton
 
-    var title: String
+    var text: String
         set(value) {
             view.text = value
         }

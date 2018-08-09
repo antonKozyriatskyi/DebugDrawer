@@ -13,7 +13,7 @@ class DslDrawerActivity : AppCompatActivity() {
         DevDrawer.attachTo(this, gravity = Gravity.END) {
 
             checkbox {
-                title = "Enable logging"
+                text = "Enable logging"
                 onCheckedChange { isChecked -> showToast("Logging enabled: $isChecked") }
             }
 
@@ -21,50 +21,51 @@ class DslDrawerActivity : AppCompatActivity() {
                 title = "Network settings"
 
                 toggle {
-                    title = "Network state"
+                    text = "Network state"
                     textOn = "Connected"
                     textOff = "Disconnected"
                     onCheckedChange { isChecked -> showToast("Network: $isChecked") }
                 }
 
                 editText {
-                    title = "localhost"
+                    text = "localhost"
                     hint = "Server url"
+
                 }
 
                 checkbox {
-                    title = "Mock responses"
+                    text = "Mock responses"
                     onCheckedChange { showToast("Mock responses enabled: $it") }
                 }
 
                 radioGroup {
                     radioButton(isChecked = true) {
-                        title = "Send real requests"
+                        text = "Send real requests"
                     }
                     radioButton {
-                        title = "Show error responses only"
+                        text = "Show error responses only"
                     }
                     radioButton(title = "Show success responses only")
 
                     onCheckedChange { option ->
-                        showToast("${option.title} selected")
+                        showToast("${option.text} selected")
                     }
                 }
             }
 
             switch {
-                title = "God mode"
+                text = "God mode"
 
                 onCheckedChange { showToast("God mode switched: $it") }
             }
 
             button {
-                title = "Crash"
+                text = "Crash"
 
                 onClick { throw Exception("Intended crash") }
             }
 
-            text { title = "Theme" }
+            text { text = "Theme" }
 
             spinner {
                 item { "Auto" }

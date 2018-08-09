@@ -16,7 +16,7 @@ class RadioGroupOption(context: Context) : DevOptions(context) {
                            block: RadioOption.() -> Unit = {}): RadioOption {
         val option = RadioOption(context)
         option.isChecked = isChecked
-        option.title = title
+        option.text = title
         option.block()
 
         addOption(option)

@@ -8,7 +8,7 @@ class TextOption(context: Context) : DevOption(context) {
     override val view = TextView(context)
 
 
-    var title: String
+    var text: String
         set(value) {
             view.text = value
         }

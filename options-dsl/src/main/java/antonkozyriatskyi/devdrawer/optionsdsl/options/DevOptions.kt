@@ -42,11 +42,11 @@ open class DevOptions(context: Context) : DevOption(context) {
         view = rootView
     }
 
-    inline fun switch(title: String = "",
+    inline fun switch(text: String = "",
                       isChecked: Boolean = false,
                       block: SwitchOption.() -> Unit): SwitchOption {
         val option = SwitchOption(context)
-        option.title = title
+        option.text = text
         option.isChecked = isChecked
         option.block()
 
@@ -55,11 +55,11 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun checkbox(title: String = "",
+    inline fun checkbox(text: String = "",
                         isChecked: Boolean = false,
                         block: CheckboxOption.() -> Unit): CheckboxOption {
         val option = CheckboxOption(context)
-        option.title = title
+        option.text = text
         option.isChecked = isChecked
         option.block()
 
@@ -68,9 +68,9 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun editText(title: String = "", hint: String = "", block: EditTextOption.() -> Unit): EditTextOption {
+    inline fun editText(text: String = "", hint: String = "", block: EditTextOption.() -> Unit): EditTextOption {
         val option = EditTextOption(context)
-        option.title = title
+        option.text = text
         option.hint = hint
         option.block()
 
@@ -91,9 +91,9 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun button(title: String = "", block: ButtonOption.() -> Unit): ButtonOption {
+    inline fun button(text: String = "", block: ButtonOption.() -> Unit): ButtonOption {
         val option = ButtonOption(context)
-        option.title = title
+        option.text = text
         option.block()
 
         addOption(option)
@@ -101,9 +101,9 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun text(title: String = "", block: TextOption.() -> Unit): TextOption {
+    inline fun text(text: String = "", block: TextOption.() -> Unit): TextOption {
         val option = TextOption(context)
-        option.title = title
+        option.text = text
         option.block()
 
         addOption(option)
@@ -111,13 +111,13 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun toggle(title: String = "",
+    inline fun toggle(text: String = "",
                       textOn: String? = null,
                       textOff: String? = null,
                       isChecked: Boolean = false,
                       block: ToggleOption.() -> Unit): ToggleOption {
         val option = ToggleOption(context)
-        option.title = title
+        option.text = text
         option.isChecked = isChecked
         if (textOn != null) option.textOn = textOn
         if (textOff != null) option.textOff = textOff

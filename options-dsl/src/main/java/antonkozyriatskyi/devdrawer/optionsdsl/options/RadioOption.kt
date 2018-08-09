@@ -7,7 +7,7 @@ class RadioOption(context: Context) : DevOption(context) {
 
     override val view = RadioButton(context)
 
-    var title: String
+    var text: String
         set(value) {
             view.text = value
         }

@@ -10,7 +10,7 @@ class EditTextOption(context: Context) : DevOption(context) {
     override val view = EditText(context)
 
 
-    var title: String
+    var text: String
         set(value) {
             view.setText(value)
         }
