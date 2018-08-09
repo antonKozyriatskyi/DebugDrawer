@@ -71,7 +71,7 @@ class DslDrawerActivity : AppCompatActivity() {
                 addItem("Dark")
                 item { "Light" }
 
-                onItemSelected { title, position -> showToast("$title at $position") }
+                onItemSelected { item, position -> showToast("$item at $position") }
             }
         }
     }

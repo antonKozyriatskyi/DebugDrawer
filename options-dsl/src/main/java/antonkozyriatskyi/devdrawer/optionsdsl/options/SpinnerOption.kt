@@ -37,7 +37,7 @@ class SpinnerOption(context: Context) : DevOption(context) {
         view.onItemSelectedListener = listener
     }
 
-    inline fun onItemSelected(crossinline listener: (title: String, position: Int) -> Unit) {
+    inline fun onItemSelected(crossinline listener: (item: String, position: Int) -> Unit) {
         onItemSelected(object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
