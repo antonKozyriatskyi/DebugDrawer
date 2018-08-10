@@ -44,7 +44,7 @@ open class DevOptions(context: Context) : DevOption(context) {
 
     inline fun switch(text: String = "",
                       isChecked: Boolean = false,
-                      block: SwitchOption.() -> Unit): SwitchOption {
+                      block: SwitchOption.() -> Unit = {}): SwitchOption {
         val option = SwitchOption(context)
         option.text = text
         option.isChecked = isChecked
@@ -57,7 +57,7 @@ open class DevOptions(context: Context) : DevOption(context) {
 
     inline fun checkbox(text: String = "",
                         isChecked: Boolean = false,
-                        block: CheckboxOption.() -> Unit): CheckboxOption {
+                        block: CheckboxOption.() -> Unit = {}): CheckboxOption {
         val option = CheckboxOption(context)
         option.text = text
         option.isChecked = isChecked
@@ -68,7 +68,9 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun editText(text: String = "", hint: String = "", block: EditTextOption.() -> Unit): EditTextOption {
+    inline fun editText(text: String = "",
+                        hint: String = "",
+                        block: EditTextOption.() -> Unit = {}): EditTextOption {
         val option = EditTextOption(context)
         option.text = text
         option.hint = hint
@@ -79,8 +81,10 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    fun section(title: String = "", @ColorInt dividerColor: Int = Color.LTGRAY,
-                addClosingDivider: Boolean = false, block: Section.() -> Unit): Section {
+    fun section(title: String = "",
+                @ColorInt dividerColor: Int = Color.LTGRAY,
+                addClosingDivider: Boolean = false,
+                block: Section.() -> Unit): Section {
         val option = Section(context, dividerColor, addClosingDivider)
         option.title = title
         option.block()
@@ -91,7 +95,8 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun button(text: String = "", block: ButtonOption.() -> Unit): ButtonOption {
+    inline fun button(text: String = "",
+                      block: ButtonOption.() -> Unit): ButtonOption {
         val option = ButtonOption(context)
         option.text = text
         option.block()
@@ -101,7 +106,8 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun text(text: String = "", block: TextOption.() -> Unit): TextOption {
+    inline fun text(text: String = "",
+                    block: TextOption.() -> Unit = {}): TextOption {
         val option = TextOption(context)
         option.text = text
         option.block()
@@ -115,7 +121,7 @@ open class DevOptions(context: Context) : DevOption(context) {
                       textOn: String? = null,
                       textOff: String? = null,
                       isChecked: Boolean = false,
-                      block: ToggleOption.() -> Unit): ToggleOption {
+                      block: ToggleOption.() -> Unit = {}): ToggleOption {
         val option = ToggleOption(context)
         option.text = text
         option.isChecked = isChecked
@@ -136,7 +142,7 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    fun radioGroup(block: RadioGroupOption.() -> Unit): RadioGroupOption {
+    fun radioGroup(block: RadioGroupOption.() -> Unit = {}): RadioGroupOption {
         val option = RadioGroupOption(context)
         option.block()
         option.addOptionViews()
@@ -151,7 +157,7 @@ open class DevOptions(context: Context) : DevOption(context) {
 
     inline fun divider(@ColorInt color: Int = Color.LTGRAY,
                        @Dimension(unit = Dimension.DP) thickness: Int = 1,
-                       block: DividerOption.() -> Unit = { }): DividerOption {
+                       block: DividerOption.() -> Unit = {}): DividerOption {
         val option = DividerOption(color, thickness, context)
         option.block()
 
