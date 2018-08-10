@@ -142,7 +142,7 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun radioGroup(block: RadioGroupOption.() -> Unit = {}): RadioGroupOption {
+    inline fun radioGroup(block: RadioGroupOption.() -> Unit): RadioGroupOption {
         val option = RadioGroupOption(context)
         option.block()
         option.addOptionViews()
