@@ -20,8 +20,7 @@ If you're using Kotlin, you can create debug layout with nice DSL.
  - ButtonOption
  - CheckBoxOption
  - EditTextOption
- - RadioOption
- - RadioGroupOption
+ - RadioOption and RadioGroupOption
  - SpinnerOption
  - SwitchOption
  - TextOption
@@ -32,11 +31,11 @@ If you're using Kotlin, you can create debug layout with nice DSL.
  
 #### ButtonOption
  
- Represents a button
+Represents a button
  
  ```kotlin
 button(title = "Dangerous button") {
-    title = "Dangerous button" // Title can also be set like this
+    text = "Dangerous button" // Title can also be set like this
     onClick {
         showToast("$title clicked")
     }
@@ -47,21 +46,125 @@ button(title = "Dangerous button") {
 
 ```kotlin
 checkbox {
-    title = "Enable logging"
-    
-    onCheckedChange {
-        
+    text = "Enable logging"
+    onCheckedChange { isChecked -> showToast("Logging enabled: $isChecked") }
+}
+```
+
+#### EditTextOption
+
+```kotlin
+editText {
+     text = "localhost"
+     hint = "Server url"
+     onTextChanged { newText -> showToast(newText.toString()) }
+}
+```
+
+#### RadioOption and RadioGroupOption
+
+```kotlin
+radioGroup {
+    radioButton(isChecked = true) {
+        text = "Send real requests"
+    }
+    radioButton {
+        text = "Show error responses only"
+    }
+    radioButton(title = "Show success responses only")
+
+    onCheckedChange { option ->
+        showToast("${option.text} selected")
     }
 }
 ```
-#### EditTextOption
-#### RadioOption
-#### RadioGroupOption
-#### SpinnerOption
+
 #### SwitchOption
+
+```kotlin
+switch {
+    text = "God mode"
+    isChecked = true
+    onCheckedChange { checked -> showToast("God mode switched: $checked") }
+}
+```
+
 #### TextOption
+
+```kotlin
+text { text = "Theme" }
+```
+
 #### ToggleOption
+
+```kotlin
+// TODO
+```
+
 #### ViewOption
+
+```kotlin
+// TODO
+```
+
+#### SpinnerOption
+
+```kotlin
+spinner {
+    item { "Auto" }
+    addItem("Dark")
+    item { "Light" }
+    
+    onItemSelected { item, position -> showToast("$item at $position") }
+}
+```
+
 #### Section
+
+```kotlin
+section(addClosingDivider = false) {
+    title = "Network settings"
+
+    toggle {
+        text = "Network state"
+        textOn = "Connected"
+        textOff = "Disconnected"
+        onCheckedChange { isChecked -> showToast("Network: $isChecked") }
+    }
+
+    editText {
+        text = "localhost"
+        hint = "Server url"
+        onTextChanged { text -> showToast(text.toString()) }
+    }
+
+    checkbox {
+        text = "Mock responses"
+        onCheckedChange { isChecked -> showToast("Mock responses enabled: $isChecked") }
+    }
+
+    radioGroup {
+        radioButton(isChecked = true) {
+            text = "Send real requests"
+        }
+        radioButton {
+            text = "Show error responses only"
+        }
+        radioButton(title = "Show success responses only")
+
+        onCheckedChange { option ->
+            showToast("${option.text} selected")
+        }
+    }
+}
+```
+
 #### Divider
+
+```kotlin
+divider {
+    thickness = 1
+    color = Color.LTGRAY
+}
+```
   
