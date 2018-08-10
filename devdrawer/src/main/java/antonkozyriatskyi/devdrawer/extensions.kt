@@ -1,4 +1,4 @@
-package antonkozyriatskyi.devdrawer.optionsdsl
+package antonkozyriatskyi.devdrawer
 
 import android.content.Context
 import android.util.TypedValue

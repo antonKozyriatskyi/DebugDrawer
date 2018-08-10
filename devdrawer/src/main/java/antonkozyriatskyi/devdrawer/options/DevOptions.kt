@@ -1,4 +1,4 @@
-package antonkozyriatskyi.devdrawer.optionsdsl.options
+package antonkozyriatskyi.devdrawer.options
 
 import android.content.Context
 import android.graphics.Color
@@ -12,7 +12,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.ScrollView
-import antonkozyriatskyi.devdrawer.optionsdsl.dp2px
+import antonkozyriatskyi.devdrawer.dp2px
 import java.util.*
 
 open class DevOptions(context: Context) : DevOption(context) {
@@ -82,9 +82,9 @@ open class DevOptions(context: Context) : DevOption(context) {
     }
 
     inline fun section(title: String = "",
-                @ColorInt dividerColor: Int = Color.LTGRAY,
-                addClosingDivider: Boolean = false,
-                block: Section.() -> Unit): Section {
+                       @ColorInt dividerColor: Int = Color.LTGRAY,
+                       addClosingDivider: Boolean = false,
+                       block: Section.() -> Unit): Section {
         val option = Section(context, dividerColor, addClosingDivider)
         option.title = title
         option.block()

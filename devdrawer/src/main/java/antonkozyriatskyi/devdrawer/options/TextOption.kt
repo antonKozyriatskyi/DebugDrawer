@@ -1,4 +1,4 @@
-package antonkozyriatskyi.devdrawer.optionsdsl.options
+package antonkozyriatskyi.devdrawer.options
 
 import android.content.Context
 import android.widget.TextView

@@ -1,10 +1,10 @@
-package antonkozyriatskyi.devdrawer.optionsdsl.options
+package antonkozyriatskyi.devdrawer.options
 
 import android.content.Context
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.RadioGroup
-import antonkozyriatskyi.devdrawer.optionsdsl.dp2px
+import antonkozyriatskyi.devdrawer.dp2px
 
 class RadioGroupOption(context: Context) : DevOptions(context) {
 

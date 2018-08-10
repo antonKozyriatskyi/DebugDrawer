@@ -8,8 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
-import antonkozyriatskyi.devdrawer.optionsdsl.devOptions
-import antonkozyriatskyi.devdrawer.optionsdsl.options.DevOptions
+import antonkozyriatskyi.devdrawer.options.DevOptions
 import android.support.v4.app.Fragment as SupportFragment
 
 class DevDrawer(private val activity: Activity, var enableInRelease: Boolean) {

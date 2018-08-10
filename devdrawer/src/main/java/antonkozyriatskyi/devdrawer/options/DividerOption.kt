@@ -1,4 +1,4 @@
-package antonkozyriatskyi.devdrawer.optionsdsl.options
+package antonkozyriatskyi.devdrawer.options
 
 import android.content.Context
 import android.support.annotation.ColorInt
@@ -6,7 +6,7 @@ import android.support.annotation.Dimension
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import antonkozyriatskyi.devdrawer.optionsdsl.dp2px
+import antonkozyriatskyi.devdrawer.dp2px
 
 class DividerOption(@ColorInt color: Int,
                     @Dimension(unit = Dimension.DP) thickness: Int, context: Context) : DevOption(context) {

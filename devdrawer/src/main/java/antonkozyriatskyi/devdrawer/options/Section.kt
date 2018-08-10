@@ -1,4 +1,4 @@
-package antonkozyriatskyi.devdrawer.optionsdsl.options
+package antonkozyriatskyi.devdrawer.options
 
 import android.content.Context
 import android.graphics.Typeface
@@ -10,7 +10,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-import antonkozyriatskyi.devdrawer.optionsdsl.dp2px
+import antonkozyriatskyi.devdrawer.dp2px
 
 class Section(context: Context,
               @ColorInt var dividerColor: Int,
