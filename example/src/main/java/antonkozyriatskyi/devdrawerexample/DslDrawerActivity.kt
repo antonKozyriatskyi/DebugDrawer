@@ -30,12 +30,12 @@ class DslDrawerActivity : AppCompatActivity() {
                 editText {
                     text = "localhost"
                     hint = "Server url"
-
+                    onTextChanged { text -> showToast(text.toString()) }
                 }
 
                 checkbox {
                     text = "Mock responses"
-                    onCheckedChange { showToast("Mock responses enabled: $it") }
+                    onCheckedChange { isChecked -> showToast("Mock responses enabled: $isChecked") }
                 }
 
                 radioGroup {
@@ -55,13 +55,11 @@ class DslDrawerActivity : AppCompatActivity() {
 
             switch {
                 text = "God mode"
-
                 onCheckedChange { showToast("God mode switched: $it") }
             }
 
             button {
                 text = "Crash"
-
                 onClick { throw Exception("Intended crash") }
             }
 
