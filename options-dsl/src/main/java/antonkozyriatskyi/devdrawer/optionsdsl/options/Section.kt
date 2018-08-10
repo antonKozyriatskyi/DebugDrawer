@@ -68,6 +68,7 @@ class Section(context: Context,
     private fun divider(): View {
         val dividerView = View(context).apply {
             val params = LinearLayout.LayoutParams(MATCH_PARENT, context.dp2px(1))
+            params.topMargin = context.dp2px(8)
             layoutParams = params
             setBackgroundColor(dividerColor)
         }
