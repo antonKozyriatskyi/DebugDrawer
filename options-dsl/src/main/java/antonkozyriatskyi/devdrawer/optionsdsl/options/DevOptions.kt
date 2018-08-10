@@ -179,7 +179,7 @@ open class DevOptions(context: Context) : DevOption(context) {
         options.add(option)
     }
 
-    internal open fun addOptionViews() {
+    open fun addOptionViews() {
         val contentLayout = (view.getChildAt(0) as ViewGroup)
 
         val dp8 = context.dp2px(8)
