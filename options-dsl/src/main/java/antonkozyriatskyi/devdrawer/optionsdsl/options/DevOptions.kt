@@ -81,7 +81,7 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    fun section(title: String = "",
+    inline fun section(title: String = "",
                 @ColorInt dividerColor: Int = Color.LTGRAY,
                 addClosingDivider: Boolean = false,
                 block: Section.() -> Unit): Section {
@@ -142,7 +142,7 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    fun radioGroup(block: RadioGroupOption.() -> Unit = {}): RadioGroupOption {
+    inline fun radioGroup(block: RadioGroupOption.() -> Unit = {}): RadioGroupOption {
         val option = RadioGroupOption(context)
         option.block()
         option.addOptionViews()
