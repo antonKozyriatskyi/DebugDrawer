@@ -5,7 +5,7 @@ switch between production and dev urls or change ).
 
 It actually just wraps your activity's root layout into a `android.support.v4.widget.DrawerLayout`.
 
-<img src="art/1.png" width="30%" /> <img src="art/2.png" width="30%" />
+<img src="art/1.png" width="40%" /> <img src="art/2.png" width="40%" />
 
 ### How to use
 
