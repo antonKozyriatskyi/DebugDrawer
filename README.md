@@ -1,13 +1,18 @@
 # DebugDrawer
 
-Drawer for 
+Drawer that allows you to easily place options you may need to change while developing your app (e.g. 
+switch between production and dev urls or change ).
+
+It actually just wraps your activity's root layout into a `android.support.v4.widget.DrawerLayout`.
+
+<img src="art/1.png" width="30%" /> <img src="art/2.png" width="30%" />
 
 ### How to use
 
-In your activity call:
+In your activity or fragment call:
 
 ```kotlin
-val settingsView = LayoutInflater.from(this).inflate(R.layout.settings_drawer, null)
+val settingsView: View = // inflate your view 
 DevDrawer.attachTo(this, gravity = Gravity.END, contentView = settingsView)
 ```
 
@@ -15,30 +20,90 @@ DevDrawer.attachTo(this, gravity = Gravity.END, contentView = settingsView)
 
 If you're using Kotlin, you can create debug layout with nice DSL.
 
+```kotlin
+// Create options
+val devOptions = devOptions {
+
+    checkbox {
+        text = "Enable logging"
+
+        onCheckedChange { isChecked -> showToast("Logging enabled: $isChecked") }
+    }
+    
+    switch {
+        text = "God mode"
+        onCheckedChange { isChecked -> showToast("God mode switched: $isChecked") }
+    }
+    
+    button {
+        text = "Crash"
+        onClick { throw Exception("Intended crash") }
+    }
+    
+    spinner {
+        item { "Auto" }
+        addItem("Dark") // another way to add item to a spinner
+        item { "Light" }
+        
+        onItemSelected { item, position -> showToast("$item at $position") }
+    }
+}
+
+// And then pass options to the `attachView` function
+DevDrawer.attachTo(this, gravity = Gravity.END, contentView = devOptions.view)
+```
+
+Or you can combine that steps into one
+
+```kotlin
+DevDrawer.attachTo(this, gravity = Gravity.END) {
+
+    checkbox {
+            text = "Enable logging"
+            onCheckedChange { isChecked -> showToast("Logging enabled: $isChecked") }
+        }
+        
+        switch {
+            text = "God mode"
+            onCheckedChange { isChecked -> showToast("God mode switched: $isChecked") }
+        }
+        
+        button {
+            text = "Crash"
+            onClick { throw Exception("Intended crash") }
+        }
+        
+        spinner {
+            item { "Auto" }
+            addItem("Dark")
+            item { "Light" }
+            
+            onItemSelected { item, position -> showToast("$item at $position") }
+        }
+}
+```
 ### Available DevOptions
 
- - ButtonOption
- - CheckBoxOption
- - EditTextOption
- - RadioOption and RadioGroupOption
- - SpinnerOption
- - SwitchOption
- - TextOption
- - ToggleOption
- - ViewOption
- - Section
- - Divider
+`DevOption` is basically a wrapper around a view. It allows you to  
+
+ - [ButtonOption](#buttonoption)
+ - [CheckBoxOption](#checkboxoption)
+ - [EditTextOption](#edittextoption)
+ - [RadioOption and RadioGroupOption](#radiooption-and-radiogroupoption)
+ - [SpinnerOption](#spinneroption)
+ - [SwitchOption](#switchoption)
+ - [TextOption](#textoption)
+ - [ToggleOption](#toggleoption)
+ - [ViewOption](#viewoption)
+ - [Section](#section)
+ - [Divider](#divider)
  
 #### ButtonOption
- 
-Represents a button
  
  ```kotlin
 button(title = "Dangerous button") {
     text = "Dangerous button" // Title can also be set like this
-    onClick {
-        showToast("$title clicked")
-    }
+    onClick { showToast("$title clicked") }
 }
 ```
  
@@ -72,10 +137,22 @@ radioGroup {
         text = "Show error responses only"
     }
     radioButton(title = "Show success responses only")
-
+    
     onCheckedChange { option ->
         showToast("${option.text} selected")
     }
+}
+```
+
+#### SpinnerOption
+
+```kotlin
+spinner {
+    item { "Auto" }
+    addItem("Dark") // another way to add item to a spinner
+    item { "Light" }
+    
+    onItemSelected { item, position -> showToast("$item at $position") }
 }
 ```
 
@@ -85,6 +162,7 @@ radioGroup {
 switch {
     text = "God mode"
     isChecked = true
+    
     onCheckedChange { checked -> showToast("God mode switched: $checked") }
 }
 ```
@@ -98,28 +176,32 @@ text { text = "Theme" }
 #### ToggleOption
 
 ```kotlin
-// TODO
+toggle {
+    text = "Network state"
+    textOn = "Connected"
+    textOff = "Disconnected"
+    onCheckedChange { isChecked -> showToast("Network: $isChecked") }
+}
 ```
 
 #### ViewOption
 
-```kotlin
-// TODO
-```
-
-#### SpinnerOption
+Allows you to put any view in `DevDrawer`
 
 ```kotlin
-spinner {
-    item { "Auto" }
-    addItem("Dark")
-    item { "Light" }
-    
-    onItemSelected { item, position -> showToast("$item at $position") }
+view {
+    val image = ImageView(this@DslDrawerActivity)
+    image.setImageResource(R.mipmap.ic_launcher)
+    image.setBackgroundColor(Color.BLACK)
+    image
 }
 ```
 
 #### Section
+
+Section allows you to group options related to some category.
+It actually just adds divider, text under divider (title) 
+then views you specified in clojure and closing divider (optionally).
 
 ```kotlin
 section(addClosingDivider = false) {
@@ -160,6 +242,8 @@ section(addClosingDivider = false) {
 ```
 
 #### Divider
+Basically it's just a view with specified height (default is `1dp`),
+color (default is `Color.LTGRAY`) and width equal to parent's width.
 
 ```kotlin
 divider {
@@ -167,4 +251,9 @@ divider {
     color = Color.LTGRAY
 }
 ```
-  
+
+### Creating custom option
+// TODO add tutorial
+
+### License
+// TODO
