@@ -147,7 +147,7 @@ radioGroup {
 #### SpinnerOption
 
 ```kotlin
-spinner {
+spinner(mode = Spinner.MODE_DROPDOWN) {
     item { "Auto" }
     addItem("Dark") // another way to add item to a spinner
     item { "Light" }

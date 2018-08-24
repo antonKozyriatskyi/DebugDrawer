@@ -12,6 +12,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import android.widget.Spinner
 import antonkozyriatskyi.devdrawer.dp2px
 import java.util.*
 
@@ -166,8 +167,9 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
-    inline fun spinner(block: SpinnerOption.() -> Unit): SpinnerOption {
-        val option = SpinnerOption(context)
+    // mode must be either Spinner.MODE_DROPDOWN or Spinner.MODE_DIALOG
+    inline fun spinner(mode: Int = Spinner.MODE_DROPDOWN, block: SpinnerOption.() -> Unit): SpinnerOption {
+        val option = SpinnerOption(context, mode)
         option.block()
 
         addOption(option)

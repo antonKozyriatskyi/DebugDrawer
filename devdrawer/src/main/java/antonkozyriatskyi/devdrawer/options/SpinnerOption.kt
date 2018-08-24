@@ -6,15 +6,16 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 
-class SpinnerOption(context: Context) : DevOption(context) {
+class SpinnerOption(context: Context, mode: Int) : DevOption(context) {
 
-    override val view = Spinner(context)
+    override val view = Spinner(context, mode)
 
     var items: ArrayList<String> = arrayListOf()
         set(value) {
             field = value
             adatper.clear()
             adatper.addAll(items)
+            adatper.notifyDataSetChanged()
         }
 
     val adatper = ArrayAdapter(context, android.R.layout.simple_list_item_1, android.R.id.text1,
