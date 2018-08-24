@@ -1,7 +1,7 @@
 # DebugDrawer
 
-Drawer that allows you to easily place options you may need to change while developing your app (e.g. 
-switch between production and dev urls or change ).
+Drawer that allows you to easily put options you may need to change while developing your app (e.g. 
+switch between production and dev urls) into a side drawer.
 
 It actually just wraps your activity's root layout into a `android.support.v4.widget.DrawerLayout`.
 
