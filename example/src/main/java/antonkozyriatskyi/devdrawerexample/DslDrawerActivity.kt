@@ -1,8 +1,10 @@
 package antonkozyriatskyi.devdrawerexample
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
+import android.widget.ImageView
 import antonkozyriatskyi.devdrawer.DevDrawer
 
 class DslDrawerActivity : AppCompatActivity() {
@@ -10,6 +12,7 @@ class DslDrawerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawer)
+
         DevDrawer.attachTo(this, gravity = Gravity.END) {
 
             checkbox {
@@ -17,7 +20,7 @@ class DslDrawerActivity : AppCompatActivity() {
                 onCheckedChange { isChecked -> showToast("Logging enabled: $isChecked") }
             }
 
-            section(addClosingDivider = false) {
+            section(addClosingDivider = true) {
                 title = "Network settings"
 
                 toggle {
@@ -71,6 +74,13 @@ class DslDrawerActivity : AppCompatActivity() {
                 item { "Light" }
 
                 onItemSelected { item, position -> showToast("$item at $position") }
+            }
+
+            view {
+                val imageView = ImageView(this@DslDrawerActivity)
+                imageView.setImageResource(R.mipmap.ic_launcher)
+                imageView.setBackgroundColor(Color.BLACK)
+                imageView
             }
         }
     }
