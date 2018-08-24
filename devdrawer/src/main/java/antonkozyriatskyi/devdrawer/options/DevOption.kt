@@ -13,15 +13,9 @@ abstract class DevOption(val context: Context) {
         }
         get() = view.id
 
-    var width: Int
-        set(value) {
-            view.layoutParams.width = value
-        }
-        get() = view.layoutParams.width
+    val width: Int
+        get() = view.width
 
-    var height: Int
-        set(value) {
-            view.layoutParams.height = value
-        }
-        get() = view.layoutParams.height
+    val height: Int
+        get() = view.height
 }
