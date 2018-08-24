@@ -18,8 +18,8 @@ class DevDrawer(private val activity: Activity, var enableInRelease: Boolean) {
         @JvmStatic
         fun attachTo(activity: Activity, @DrawerGravity gravity: Int = Gravity.END,
                      enableInRelease: Boolean = false, contentView: View) {
-            val debugDrawer = DevDrawer(activity, enableInRelease)
-            debugDrawer.createDrawer(gravity, contentView)
+            val devDrawer = DevDrawer(activity, enableInRelease)
+            devDrawer.createDrawer(gravity, contentView)
         }
 
         @JvmStatic
@@ -42,13 +42,13 @@ class DevDrawer(private val activity: Activity, var enableInRelease: Boolean) {
         }
 
         fun attachTo(fragment: SupportFragment, @DrawerGravity gravity: Int = Gravity.END,
-                     enableInRelease: Boolean = false, debugOptions: DevOptions.() -> Unit) {
-            attachTo(fragment.activity!!, gravity, enableInRelease, debugOptions)
+                     enableInRelease: Boolean = false, devOptions: DevOptions.() -> Unit) {
+            attachTo(fragment.activity!!, gravity, enableInRelease, devOptions)
         }
 
         fun attachTo(fragment: Fragment, @DrawerGravity gravity: Int = Gravity.END,
-                     enableInRelease: Boolean = false, debugOptions: DevOptions.() -> Unit) {
-            attachTo(fragment.activity!!, gravity, enableInRelease, debugOptions)
+                     enableInRelease: Boolean = false, devOptions: DevOptions.() -> Unit) {
+            attachTo(fragment.activity!!, gravity, enableInRelease, devOptions)
         }
     }
 
