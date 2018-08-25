@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.widget.ImageView
 import antonkozyriatskyi.devdrawer.DevDrawer
+import antonkozyriatskyi.devdrawerexample.fab.fab
 
 class DslDrawerActivity : AppCompatActivity() {
 
@@ -13,7 +14,7 @@ class DslDrawerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawer)
 
-        DevDrawer.attachTo(this, gravity = Gravity.END) {
+        DevDrawer.attachTo(this, gravity = Gravity.END, enableInRelease = false) {
 
             checkbox {
                 text = "Enable logging"
@@ -81,6 +82,16 @@ class DslDrawerActivity : AppCompatActivity() {
                 imageView.setImageResource(R.mipmap.ic_launcher)
                 imageView.setBackgroundColor(Color.BLACK)
                 imageView
+            }
+
+            seekbar {
+                onProgressChanged { progress, fromUser -> showToast("Progress: $progress") }
+            }
+
+            fab {
+                setImageResource(R.mipmap.ic_launcher)
+
+                onClick { showToast("FAB") }
             }
         }
     }
