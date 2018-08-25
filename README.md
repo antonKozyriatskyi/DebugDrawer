@@ -1,7 +1,8 @@
-# DebugDrawer
+# DevDrawer
 
-Drawer that allows you to easily put options you may need to change while developing your app (e.g. 
-switch between production and dev urls) into a side drawer.
+Library that allows you to easily put various views into a side drawer, for controlling
+options you may need to change while developing your app (e.g. switch between production and dev urls
+or enabling/disabling logging) into a side drawer.
 
 It actually just wraps your activity's root layout into a `android.support.v4.widget.DrawerLayout`.
 
