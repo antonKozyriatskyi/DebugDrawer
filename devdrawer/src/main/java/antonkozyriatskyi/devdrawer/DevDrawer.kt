@@ -53,7 +53,7 @@ class DevDrawer(private val activity: Activity, var enableInRelease: Boolean) {
     }
 
 
-    fun createDrawer(@DrawerGravity gravity: Int, contentView: View) {
+    private fun createDrawer(@DrawerGravity gravity: Int, contentView: View) {
 
         // do not add drawer if it's not debug build and enableInRelease == false
         if (enableInRelease.not() and BuildConfig.DEBUG.not()) return
