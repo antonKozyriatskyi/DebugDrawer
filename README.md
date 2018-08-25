@@ -13,8 +13,17 @@ In your activity or fragment call:
 
 ```kotlin
 val settingsView: View = // inflate your view 
-DevDrawer.attachTo(this, gravity = Gravity.END, contentView = settingsView)
+DevDrawer.attachTo(this /*activity*/, gravity = Gravity.END, enableInRelease = false, contentView = settingsView)
 ```
+
+**Parameters**
+ - activity - activity, where to put drawer.
+ - gravity - drawer's gravity. Must be one of `Gravity.END`, `Gravity.START`, `Gravity.LEFT`, `Gravity.RIGHT`.
+ Default is `Gravity.END`
+ - enableInRelease - if `true` drawer will be added even in non-debug builds (`BuildConfig.DEBUG != true`).
+ Default is `false.
+ - contentView - view, that will be put in drawer
+ - optionsBody - function, that will be called on 
 
 ## Kotlin DSL builder
 
@@ -244,9 +253,7 @@ section(addClosingDivider = false) {
         }
         radioButton(title = "Show success responses only")
 
-        onCheckedChange { option ->
-            showToast("${option.text} selected")
-        }
+        onCheckedChange { option -> showToast("${option.text} selected") }
     }
 }
 ```
@@ -306,6 +313,26 @@ DevDrawer.attachTo(this) {
     }
 }
 ```
+
+Code from this example can be found here [FloatingActionButtonOption](example/src/main/java/antonkozyriatskyi/devdrawerexample/fab/FloatingActionButtonOption.kt)
+
+### Download
+
+Add this in your **root** `build.gradle` at the end of `repositories` in `allprojects` section:
+```groovy
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+Then add this dependency to your **module-level** `build.gradle` in `dependencies` section:
+```groovy
+implementation 'com.github.antonKozyriatskyi:DevDrawer:1.0'
+```
+
+---
 
 ### License
 ```
