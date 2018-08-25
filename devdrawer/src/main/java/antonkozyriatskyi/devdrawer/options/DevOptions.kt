@@ -177,6 +177,15 @@ open class DevOptions(context: Context) : DevOption(context) {
         return option
     }
 
+    inline fun seekbar(block: SeekbarOption.() -> Unit): SeekbarOption {
+        val option = SeekbarOption(context)
+        option.block()
+
+        this.addOption(option)
+
+        return option
+    }
+
     fun addOption(option: DevOption) {
         options.add(option)
     }
