@@ -18,7 +18,7 @@ DevDrawer.attachTo(this, gravity = Gravity.END, contentView = settingsView)
 
 ## Kotlin DSL builder
 
-If you're using Kotlin, you can create debug layout with nice DSL.
+If you're using Kotlin, you can create layout with nice DSL:
 
 ```kotlin
 // Create options
@@ -53,7 +53,7 @@ val devOptions = devOptions {
 DevDrawer.attachTo(this, gravity = Gravity.END, contentView = devOptions.view)
 ```
 
-Or you can combine that steps into one
+Or you can combine that steps into one:
 
 ```kotlin
 DevDrawer.attachTo(this, gravity = Gravity.END) {
@@ -84,8 +84,6 @@ DevDrawer.attachTo(this, gravity = Gravity.END) {
 ```
 ### Available DevOptions
 
-`DevOption` is basically a wrapper around a view. It allows you to  
-
  - [ButtonOption](#buttonoption)
  - [CheckBoxOption](#checkboxoption)
  - [EditTextOption](#edittextoption)
@@ -94,15 +92,19 @@ DevDrawer.attachTo(this, gravity = Gravity.END) {
  - [SwitchOption](#switchoption)
  - [TextOption](#textoption)
  - [ToggleOption](#toggleoption)
+ - [SeekbarOption](#seekbaroption)
  - [ViewOption](#viewoption)
  - [Section](#section)
  - [Divider](#divider)
  
+ 
+ Visit [Creating custom option](#creating-custom-option) section, if you lack some options
+ 
 #### ButtonOption
  
  ```kotlin
-button(title = "Dangerous button") {
-    text = "Dangerous button" // Title can also be set like this
+button(text = "Dangerous button") {
+    text = "Dangerous button" // Title can also be set via property, this applies to all options that have text
     onClick { showToast("$title clicked") }
 }
 ```
@@ -163,7 +165,7 @@ switch {
     text = "God mode"
     isChecked = true
     
-    onCheckedChange { checked -> showToast("God mode switched: $checked") }
+    onCheckedChange { isChecked -> showToast("God mode switched: $isChecked") }
 }
 ```
 
@@ -181,6 +183,14 @@ toggle {
     textOn = "Connected"
     textOff = "Disconnected"
     onCheckedChange { isChecked -> showToast("Network: $isChecked") }
+}
+```
+
+#### SeekbarOption
+
+```kotlin
+seekbar {
+    onProgressChanged { progress, fromUser -> showToast("Progress: $progress") }
 }
 ```
 
@@ -253,7 +263,63 @@ divider {
 ```
 
 ### Creating custom option
-// TODO add tutorial
+If library doesn't provide you with option you need, you can create your own option
+by subclassing `DevOption` and overriding it's `view: View` property.
+
+#### Example
+Let's create `FloatingActionButtonOption` which is not included in library by default.
+
+```kotlin
+class FloatingActionButtonOption(context: Context) : DevOption(context) {
+
+    override val view = FloatingActionButton(context)
+    
+    fun setImageResource(@DrawableRes id: Int) {
+        view.setImageResource(id)
+    }
+    
+    fun onClick(listener: (view: View) -> Unit) {
+        view.setOnClickListener(listener)
+    }
+}
+```
+ That's it! But for more convenient usage it'll be good to add builder function to `DevOptions`
+ class.
+ 
+ ```kotlin
+fun DevOptions.fab(block: FloatingActionButtonOption.() -> Unit): FloatingActionButtonOption {
+    val option = FloatingActionButtonOption(context)
+    option.block()
+
+    addOption(option)
+
+    return option
+}
+```
+
+So the callsite now looks like this:
+```kotlin
+DevDrawer.attachTo(this) {
+    fab {
+        setImageResource(R.mipmap.ic_launcher)
+        onClick { showToast("FAB") }
+    }
+}
+```
 
 ### License
-// TODO
+```
+   Copyright 2018 Anton Kozyriatskyi
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+```
