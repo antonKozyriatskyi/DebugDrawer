@@ -14,7 +14,7 @@ class DslDrawerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawer)
 
-        DevDrawer.attachTo(this, gravity = Gravity.END, enableInRelease = false) {
+        DevDrawer.attachTo(this, gravity = Gravity.END) {
 
             checkbox {
                 text = "Enable logging"

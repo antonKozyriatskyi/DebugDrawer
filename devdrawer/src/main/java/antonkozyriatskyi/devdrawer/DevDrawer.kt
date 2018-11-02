@@ -11,52 +11,49 @@ import android.widget.FrameLayout
 import antonkozyriatskyi.devdrawer.options.DevOptions
 import android.support.v4.app.Fragment as SupportFragment
 
-class DevDrawer(private val activity: Activity, var enableInRelease: Boolean) {
+class DevDrawer(private val activity: Activity) {
 
     companion object {
 
         @JvmStatic
         fun attachTo(activity: Activity, @DrawerGravity gravity: Int = Gravity.END,
-                     enableInRelease: Boolean = false, contentView: View) {
-            val devDrawer = DevDrawer(activity, enableInRelease)
+                     contentView: View) {
+            val devDrawer = DevDrawer(activity)
             devDrawer.createDrawer(gravity, contentView)
         }
 
         @JvmStatic
-        fun attachTo(fragment: SupportFragment, @DrawerGravity gravity: Int = Gravity.END,
-                     enableInRelease: Boolean = false, contentView: View) {
-            attachTo(fragment.activity!!, gravity, enableInRelease, contentView)
+        fun attachTo(fragment: android.support.v4.app.Fragment, @DrawerGravity gravity: Int = Gravity.END,
+                     contentView: View) {
+            attachTo(fragment.activity!!, gravity, contentView)
         }
 
         @JvmStatic
         fun attachTo(fragment: Fragment, @DrawerGravity gravity: Int = Gravity.END,
-                     enableInRelease: Boolean = false, contentView: View) {
-            attachTo(fragment.activity!!, gravity, enableInRelease, contentView)
+                     contentView: View) {
+            attachTo(fragment.activity!!, gravity, contentView)
         }
 
         fun attachTo(activity: Activity, @DrawerGravity gravity: Int = Gravity.END,
-                     enableInRelease: Boolean = false, optionsBody: DevOptions.() -> Unit) {
+                     optionsBody: DevOptions.() -> Unit) {
             val options = devOptions(activity, optionsBody)
             val contentView = options.view
-            attachTo(activity, gravity, enableInRelease, contentView)
+            attachTo(activity, gravity, contentView)
         }
 
-        fun attachTo(fragment: SupportFragment, @DrawerGravity gravity: Int = Gravity.END,
-                     enableInRelease: Boolean = false, devOptions: DevOptions.() -> Unit) {
-            attachTo(fragment.activity!!, gravity, enableInRelease, devOptions)
+        fun attachTo(fragment: android.support.v4.app.Fragment, @DrawerGravity gravity: Int = Gravity.END,
+                     devOptions: DevOptions.() -> Unit) {
+            attachTo(fragment.activity!!, gravity, devOptions)
         }
 
         fun attachTo(fragment: Fragment, @DrawerGravity gravity: Int = Gravity.END,
-                     enableInRelease: Boolean = false, devOptions: DevOptions.() -> Unit) {
-            attachTo(fragment.activity!!, gravity, enableInRelease, devOptions)
+                     devOptions: DevOptions.() -> Unit) {
+            attachTo(fragment.activity!!, gravity, devOptions)
         }
     }
 
 
     private fun createDrawer(@DrawerGravity gravity: Int, contentView: View) {
-
-        // do not add drawer if it's not debug build and enableInRelease == false
-        if (enableInRelease.not() and BuildConfig.DEBUG.not()) return
 
         val root = activity.window.decorView.findViewById<ViewGroup>(android.R.id.content)
         val activityRootView = root.getChildAt(0)
