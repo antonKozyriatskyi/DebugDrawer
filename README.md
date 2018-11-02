@@ -14,15 +14,13 @@ In your activity or fragment call:
 
 ```kotlin
 val settingsView: View = // inflate your view 
-DevDrawer.attachTo(this /*activity*/, gravity = Gravity.END, enableInRelease = false, contentView = settingsView)
+DevDrawer.attachTo(this /*activity*/, gravity = Gravity.END, contentView = settingsView)
 ```
 
 **Parameters**
  - activity - activity, where to put drawer.
  - gravity - drawer's gravity. Must be one of `Gravity.END`, `Gravity.START`, `Gravity.LEFT`, `Gravity.RIGHT`.
  Default is `Gravity.END`
- - enableInRelease - if `true` drawer will be added even in non-debug builds (`BuildConfig.DEBUG != true`).
- Default is `false.
  - contentView - view, that will be put in drawer
  - optionsBody - function, that will be called on 
 
@@ -200,6 +198,8 @@ toggle {
 
 ```kotlin
 seekbar {
+    progress = 5
+    maxProgress = 10
     onProgressChanged { progress, fromUser -> showToast("Progress: $progress") }
 }
 ```
@@ -330,7 +330,7 @@ allprojects {
 
 Then add this dependency to your **module-level** `build.gradle` in `dependencies` section:
 ```groovy
-implementation 'com.github.antonKozyriatskyi:DevDrawer:1.0'
+implementation 'com.github.antonKozyriatskyi:DevDrawer:1.0.3'
 ```
 
 ---
